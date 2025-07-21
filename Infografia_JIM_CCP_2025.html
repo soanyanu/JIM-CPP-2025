@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: JIM CCP 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    Plan Narrativo:
+    1.  Introducción: Presentar el evento con los datos más impactantes (fechas, N° de facultades).
+    2.  Participantes: Detallar quiénes pueden y no pueden participar.
+    3.  Disciplinas: Visualizar la variedad de deportes disponibles.
+    4.  Cronograma Clave: Mostrar las fechas importantes en un formato de línea de tiempo.
+    5.  Normativa Egresados: Clarificar las reglas específicas para egresados de forma sobria.
+    6.  Proceso de Inscripción: Describir el flujo desde el envío de nóminas hasta el sorteo.
+    7.  Acreditación: Resumir los elementos esenciales del día de acreditación.
+    8.  Conclusión y Advertencia: Finalizar con la información de la premiación y un llamado a leer el documento completo.
+
+    Selección de Visualizaciones (Confirmación NO SVG / NO MERMAID):
+    -   Datos Clave (N° facultades): Meta: Informar. Visualización: Número Grande. Justificación: Impacto directo. Método: HTML/Tailwind.
+    -   Disciplinas Deportivas: Meta: Comparar. Visualización: Lista. Justificación: Preferencia del usuario para mostrar todas las disciplinas y subdisciplinas de E-sports. Método: HTML/CSS con Tailwind.
+    -   Cronograma de Inscripción: Meta: Mostrar Cambio (en el tiempo). Visualización: Línea de Tiempo Vertical. Justificación: Representación intuitiva de una secuencia de fechas. Método: HTML/CSS con Tailwind (NO SVG).
+    -   Límite de Egresados en Nómina (50%): Meta: Informar. Visualización: Texto claro. Justificación: Hacer la sección más sobria según la solicitud del usuario. Método: HTML/CSS con Tailwind.
+    -   Límite de Egresados en Cancha (3): Meta: Informar. Visualización: Texto claro. Justificación: Hacer la sección más sobria según la solicitud del usuario. Método: HTML/CSS con Tailwind (NO SVG).
+    -   Proceso de Inscripción a Sorteo: Meta: Organizar. Visualización: Diagrama de Flujo. Justificación: Aclara un proceso paso a paso. Método: HTML/CSS con Tailwind (NO SVG, NO MERMAID).
+
+    Paleta de Colores Seleccionada: Energetic & Playful
+    - #FF6B6B (Coral)
+    - #FFD166 (Amarillo)
+    - #06D6A0 (Verde)
+    - #118AB2 (Azul)
+    - #073B4C (Azul Oscuro/Texto)
+    
+    Confirmación explícita: NI Mermaid JS NI SVG fueron utilizados en la generación de este archivo. Toda la renderización gráfica se realiza mediante Chart.js (Canvas) o a través de HTML y CSS con Tailwind.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#073B4C] uppercase tracking-wide">JIM CCP 2025</h1>
+            <p class="text-xl md:text-2xl text-[#118AB2] mt-2 font-bold">Juegos Intermedicina Concepción</p>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 text-center">
+            <div class="card">
+                <p class="text-6xl font-black text-[#FF6B6B]">39</p>
+                <p class="text-lg font-bold text-[#073B4C] mt-2">Facultades de Medicina</p>
+            </div>
+            <div class="card">
+                 <p class="text-6xl font-black text-[#FFD166]">4</p>
+                <p class="text-lg font-bold text-[#073B4C] mt-2">Días de Competencia</p>
+            </div>
+            <div class="card">
+                <p class="text-2xl md:text-3xl font-black text-[#06D6A0] pt-3">30 OCT - 02 NOV</p>
+                <p class="text-lg font-bold text-[#073B4C] mt-2">2025</p>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">¿Quiénes Pueden Participar?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card border-t-4 border-[#06D6A0]">
+                    <h3 class="text-xl font-bold mb-3 text-[#073B4C]">Estudiantes Regulares</h3>
+                    <p class="text-gray-600">Mayores de 18 años, con matrícula vigente en una de las universidades de ASEMECH.</p>
+                </div>
+                <div class="card border-t-4 border-[#118AB2]">
+                    <h3 class="text-xl font-bold mb-3 text-[#073B4C]">Egresados/as de Medicina</h3>
+                    <p class="text-gray-600">Con un máximo de 3 años desde su egreso (promociones 2022, 2023 y 2024).</p>
+                </div>
+                <div class="card border-t-4 border-[#FF6B6B]">
+                    <h3 class="text-xl font-bold mb-3 text-[#073B4C]">Exclusiones Importantes</h3>
+                    <p class="text-gray-600">No se permite la inscripción a estudiantes que hayan congelado su año curricular durante el 2S o con penas aflictivas previa.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 card">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">Disciplinas Deportivas</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Los JIM 2025 ofrecen una amplia gama de competencias. Los E-sports se destacan por incluir múltiples videojuegos, cada uno considerado como una sub-disciplina.</p>
+            <ul class="list-disc list-inside text-lg text-gray-700 space-y-2 max-w-xl mx-auto">
+                <li>Ajedrez</li>
+                <li>Atletismo</li>
+                <li>Balonmano</li>
+                <li>Básquetbol</li>
+                <li>E-sports: Fifa 25, Super Smash Ultimate, Mario Kart 8 Deluxe, Valorant, League of Legends</li>
+                <li>Escalada</li>
+                <li>Fútbol 11 masculino</li>
+                <li>Futbolito 7 femenino</li>
+                <li>Natación</li>
+                <li>Pádel</li>
+                <li>Taekwondo</li>
+                <li>Tenis</li>
+                <li>Tenis de mesa</li>
+                <li>Voleibol</li>
+                <li>Voleibol playa</li>
+            </ul>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-12 text-[#073B4C]">Cronograma de Inscripción: ¡Fechas Clave!</h2>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="absolute left-1/2 w-1 bg-[#118AB2] h-full transform -translate-x-1/2"></div>
+                <div class="space-y-12">
+                    <div class="relative">
+                        <div class="md:flex items-center md:justify-end md:space-x-8">
+                            <div class="md:w-1/2 text-right pr-8">
+                                <p class="text-lg font-bold text-[#073B4C]">21 de Julio</p>
+                                <p class="text-gray-600">Envío de nóminas iniciales por consejeros/as.</p>
+                            </div>
+                            <div class="absolute left-1/2 w-8 h-8 bg-[#FFD166] rounded-full transform -translate-x-1/2 border-4 border-white flex items-center justify-center font-bold text-[#073B4C]">1</div>
+                        </div>
+                    </div>
+                     <div class="relative">
+                        <div class="md:flex items-center md:flex-row-reverse md:justify-end md:space-x-reverse md:space-x-8">
+                            <div class="md:w-1/2 text-left pl-8">
+                                <p class="text-lg font-bold text-[#073B4C]">24 de Agosto</p>
+                                <p class="text-gray-600">Cierre preliminar de nóminas para armar el fixture.</p>
+                            </div>
+                            <div class="absolute left-1/2 w-8 h-8 bg-[#FFD166] rounded-full transform -translate-x-1/2 border-4 border-white flex items-center justify-center font-bold text-[#073B4C]">2</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="md:flex items-center md:justify-end md:space-x-8">
+                            <div class="md:w-1/2 text-right pr-8">
+                                <p class="text-lg font-bold text-[#073B4C]">01 de Septiembre</p>
+                                <p class="text-gray-600">Reapertura de nóminas para modificaciones.</p>
+                            </div>
+                             <div class="absolute left-1/2 w-8 h-8 bg-[#FFD166] rounded-full transform -translate-x-1/2 border-4 border-white flex items-center justify-center font-bold text-[#073B4C]">3</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                         <div class="md:flex items-center md:flex-row-reverse md:justify-end md:space-x-reverse md:space-x-8">
+                            <div class="md:w-1/2 text-left pl-8">
+                                <p class="text-lg font-bold text-[#FF6B6B]">26 de Septiembre</p>
+                                <p class="text-gray-600">CIERRE OFICIAL Y DEFINITIVO DE NÓMINAS.</p>
+                            </div>
+                           <div class="absolute left-1/2 w-8 h-8 bg-[#FF6B6B] rounded-full transform -translate-x-1/2 border-4 border-white flex items-center justify-center font-bold text-white">4</div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                         <div class="md:flex items-center md:justify-end md:space-x-8">
+                            <div class="md:w-1/2 text-right pr-8">
+                                <p class="text-lg font-bold text-[#06D6A0]">27 de Septiembre</p>
+                                <p class="text-gray-600">Sorteo oficial de grupos y llaves.</p>
+                            </div>
+                           <div class="absolute left-1/2 w-8 h-8 bg-[#06D6A0] rounded-full transform -translate-x-1/2 border-4 border-white flex items-center justify-center font-bold text-white">5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">Normativa para Egresados/as</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card text-center">
+                    <h3 class="text-xl font-bold mb-4 text-[#073B4C]">Límite en Nómina</h3>
+                    <p class="text-gray-600 mb-4">La presencia de egresados/as no podrá superar el <strong>50%</strong> del total de jugadores en nómina por equipo.</p>
+                    <p class="text-sm text-gray-500 mt-4">Esta regla asegura un equilibrio entre la experiencia y la participación estudiantil en los equipos.</p>
+                </div>
+                <div class="card text-center">
+                    <h3 class="text-xl font-bold mb-4 text-[#073B4C]">Límite en Cancha</h3>
+                    <p class="text-gray-600 mb-4">Durante los partidos, la presencia en cancha de egresados/as no podrá superar la cantidad de <strong>3 jugadores</strong> en juego por equipo.</p>
+                    <p class="text-sm text-gray-500 mt-4">Esta medida busca mantener la competitividad justa y la esencia de los juegos inter-facultades.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 card">
+             <h2 class="text-3xl font-bold text-center mb-8 text-[#073B4C]">Proceso de Inscripción</h2>
+             <p class="text-center text-gray-600 mb-8 max-w-3xl mx-auto">Para asegurar una competencia justa y organizada, todas las delegaciones deben seguir el proceso oficial de inscripción de deportistas y notificación.</p>
+            <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4">
+                    <p class="font-bold text-[#073B4C]">Paso 1: Nóminas</p>
+                    <p class="text-sm text-gray-600">Cada delegación rellena su nómina en Google Sheets.</p>
+                </div>
+                <div class="text-2xl font-bold text-[#118AB2] transform md:rotate-0 rotate-90">&rarr;</div>
+                <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4">
+                    <p class="font-bold text-[#073B4C]">Paso 2: Notificación</p>
+                    <p class="text-sm text-gray-600">Se notifica la entrega vía email a dojim@asemech.cl y contacto@asemech.cl.</p>
+                </div>
+                 <div class="text-2xl font-bold text-[#118AB2] transform md:rotate-0 rotate-90">&rarr;</div>
+                <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4">
+                    <p class="font-bold text-[#073B4C]">Paso 3: Cierre</p>
+                    <p class="text-sm text-gray-600">Plazo máximo el 26 de Septiembre a las 23:59.</p>
+                </div>
+                <div class="text-2xl font-bold text-[#118AB2] transform md:rotate-0 rotate-90">&rarr;</div>
+                <div class="p-4 rounded-lg bg-gray-100 w-full md:w-1/4">
+                    <p class="font-bold text-[#06D6A0]">Paso 4: Sorteo</p>
+                    <p class="text-sm text-gray-600">El 27 de Septiembre se conforman los grupos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 card bg-[#073B4C] text-white">
+            <h2 class="text-3xl font-bold text-center mb-8 text-white">Acreditación y Conducta</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                <div>
+                    <h3 class="text-xl font-bold text-[#FFD166] mb-3">Día de Acreditación</h3>
+                    <p>El <strong>Jueves 30 de Octubre</strong> (08:00 a 20:00 hrs) en la <strong>UCSC</strong>. Recibirás tu kit con la pulsera oficial.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-[#FFD166] mb-3">Obligatorio y Esencial</h3>
+                    <p>Es <strong>mandatorio portar siempre tu pulsera oficial y tu cédula de identidad</strong>. Cualquier acto de violencia o discriminación será sancionado.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center p-8 bg-white rounded-lg shadow-inner border-t-4 border-[#FF6B6B]">
+            <h2 class="text-2xl font-bold text-[#FF6B6B] mb-4">¡MUY IMPORTANTE!</h2>
+            <p class="text-gray-700 max-w-4xl mx-auto">
+                Esta infografía es un resumen de los puntos más relevantes. Las bases completas se encuentran en un <strong>documento oficial de 75 páginas</strong>. Es responsabilidad de cada participante y delegación leerlo en su totalidad. 
+            </p>
+            <p class="font-bold text-[#073B4C] mt-4">Al inscribirte, aceptas y das por conocido todo el contenido del reglamento oficial.</p>
+             <p class="text-sm text-gray-500 mt-8">
+               Ceremonia de Clausura y Premiación: Domingo 02 de Noviembre.
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Se ha eliminado el gráfico de disciplinas y el de egresados en nómina, por lo tanto,
+        // las funciones wrapLabel y tooltipTitleCallback ya no son estrictamente necesarias
+        // para los gráficos, pero se mantienen por si se añaden gráficos con etiquetas largas en el futuro.
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        // La configuración genérica de Chart.js se mantiene por si se añaden nuevos gráficos.
+        const genericChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#073B4C',
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            }
+        };
+
+        // El código relacionado con los gráficos de disciplinas y egresados en nómina ha sido eliminado
+        // ya que esas secciones ahora son puramente textuales.
+        // const disciplinasData = { ... };
+        // const disciplinasCtx = document.getElementById('disciplinasChart').getContext('2d');
+        // new Chart(disciplinasCtx, { ... });
+
+        // const egresadosNominaData = { ... };
+        // const egresadosNominaCtx = document.getElementById('egresadosNominaChart').getContext('2d');
+        // new Chart(egresadosNominaCtx, { ... });
+    </script>
+</body>
+</html>
